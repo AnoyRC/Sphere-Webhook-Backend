@@ -267,6 +267,30 @@ app.post("/mint/cl207/:address", async (req, res) => {
   }
 });
 
+app.get("/assets/:address", async (req, res) => {
+  const config = {
+    headers: {
+      "x-client-secret": "sk_test.2d726b3c.e2b6f527018e88ad299fbfc7c39a1821",
+      "x-project-id": "7f12ef92-e40f-43c9-af10-d4d585656d65",
+    },
+  };
+
+  axios
+    .get(
+      `https://staging.crossmint.com/api/2022-06-09/collections/969c472e-c8db-4fb4-8af9-f33c232077c8/nfts?page=1`,
+      config
+    )
+    .then((response) => {
+      const filter = response.data.filter((song) => {
+        return song.onChain.owner === req.params.address;
+      });
+      return res.json(filter);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+});
+
 app.listen(8080, () => {
   console.log(`⚪ Sphere example webhook signing server :${8080}`);
 });
