@@ -169,7 +169,7 @@ app.post("/mint/anatoly/:address", async (req, res) => {
   const body = JSON.stringify({
     recipient: "solana:" + req.params.address,
     metadata: {
-      name: "Anatoly Yakovenko",
+      name: "Anatoly Yakavenko",
       image:
         "https://bafybeickgawhzcwdmvus6qlilq3i7sfry3vf6n3gjcjw5k4nzsvp74w7am.ipfs.w3s.link/Anatoly%20Card.png",
       description: "Founder of Solana",
